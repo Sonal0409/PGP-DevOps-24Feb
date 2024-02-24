@@ -1,0 +1,95 @@
+Steps to  Launch the Lab from LMS
+================================================
+> Go to https://lms.simplilearn.com/
+> Click on to Program button under Post Graduate Program in DevOps 
+
+> Select Course 2 - PD DO - DevOps Certification Training
+
+
+> Click on labs
+
+> Go to Practice Lab on left side and click on it
+
+
+
+
+> Click on DevOps in AWS V2
+
+
+> Click on Launch Lab button at right bottom
+> Click on RDP (Remote Desktop protocol) access 
+
+> Click on Start Instance button and click Yes
+
+
+
+> It will take a while for the lab environment to start. Pls wait
+
+
+> Click on RDP Access
+
+> Click on Auth URL - blue button - to launch the lab
+
+
+
+> Lab will launch , click on OK button to proceed
+> Lab desktop will launch
+
+
+
+*********
+[OR]
+
+Steps to Launch Lab via SSH
+
+> Go to https://lms.simplilearn.com/
+> Click on to Program button under Post Graduate Program in DevOps 
+> Select Course 2 - PD DO - DevOps Certification Training
+> Go to Practice Lab on left side and click on it
+> Click on DevOps in AWS V2
+> Click on Launch Lab button at right bottom
+> Click on Web Console
+> Open a SSH client like GIT bash
+> Enter the below command - 
+      ssh yourusername@ip_on_webconsole -p 42006
+> It will ask for a password. Give the password from WebConsole.
+> you will be connected to lab via SSH
+
+
+************
+IF ANY ISSUES WITH ACCESSING THE LAB- PLS REACH OUT TO SUPPORT TEAM
+*************
+
+
+
+
+
+
+            
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
