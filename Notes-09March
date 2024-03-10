@@ -1,0 +1,603 @@
+Launch the lab 
+
+Steps to  Launch the Lab from LMS
+
+> Go to https://lms.simplilearn.com/
+> Click on to Program button under Post Graduate Program in DevOps 
+> Select Course 2 - PD DO - DevOps Certification Training
+> Go to Practice Lab on left side and click on it
+> Click on DevOps in AWS V2
+> Click on Launch Lab button at right bottom
+> Click on RDP (Remote Desktop protocol) access 
+> Click on Start Instance button and click Yes
+> It will take a while for the lab environment to start. Pls wait
+> Click on RDP Access
+> Click on Auth URL - blue button - to launch the lab
+> Lab will launch , click on OK button to proceed
+> Lab desktop will launch
+
+
+Version Control with GIT
+********************
+
+Scenario 1:
+=================================
+Check if we have git installed or not on lab
+
+$ sudo su -
+$  git --version
+  
+git version 2.34.1
+
+If git is not installed use following commands to install in it
+
+Extra command:
+
+Install git on ubuntu OS
+
+ apt-get install git -y
+
+Install git on RHEL OS or AMazon Linux 2 OS
+
+yum install git -y
+
+Install git on windows OS
+
+https://git-scm.com/download/win
+
+
+
+
+Scenario 2:
+=============================================
+Create a working directory
+
+$ sudo su -
+$ mkdir myproject
+$ cd myproject
+
+Create a file inside the directory
+
+$ touch index1.html index2.html
+
+
+
+Initialize git on the working directory
+
+$ git init
+
+
+This command will create a .git folder
+
+$ ls -al
+
+
+
+Execute:
+# git status 
+
+It will show that the 2 files are untracked.
+We have to commit them to local repository
+
+
+Scenario 3:
+==================================
+Configure git for username and email :
+
+$ git config --global user.name admin
+$ git config --global user.email admin@gmail.com
+
+
+
+
+For your information: Assignment
+=====================
+
+When global configurations are set , they can be found in the file : 
+
+# cat ~/.gitconfig
+
+When configuration of type system are set , you can find them at:
+
+# cat /etc/gitconfig
+When configuration of type local are set, only for that working directory, you can find it in:
+
+# cat .git/config
+
+============================================
+
+Commands to edit your set configuration
+
+# git config --global --edit
+
+Command to unset the configurations
+
+# git config --global --unset user.name
+
+
+=====================================================================
+
+Scenario 4:
+=====================================
+Add file from working directory to local repo
+
+See the status of current working directory
+$ git status 
+
+Add the unstagged file to staging area
+
+$ git add index1.html index2.html
+
+$ git status ⇒ check file is in staging area
+
+Commit the files or changes to LR
+$ git commit -m “file added”
+
+Check files in Local repo
+
+$ git ls-files
+
+See the commit history:
+
+$ git log
+
+See the history of every commit in a single line
+
+$ git log --oneline
+
+
+$ git show <commitid>
+
+
+
+
+
+
+=================================
+
+Modify an existing file that is already being tracked and add the changes to the repo
+
+$ vim index1.html ⇒ insert data and save the file
+
+$ git status   ⇒ changes will in red
+$ git add index1.html
+$ git status  ⇒ changes will in green
+$ git commit -m “modifcation added”
+
+[OR]
+
+$ vim index1.html
+Add some content , save the file
+To save the file
+Press ESC key
+Then press  :wq 
+Press enter key
+
+$ git status ⇒ red color
+$ git commit -a -m “added modification”
+
+
+================================
+
+
+Scenario 6:  ASSIGNMENT
+
+******
+
+If you want certain files not to be version controlled then git can ignore them
+
+Now you will have to create a .gitignore file 
+
+In this file add the name of the files that are not to be tracked by
+
+
+
+Create 2 files 
+$ touch file1.txt file2.xml
+
+We want these files to be ignored
+
+Create .gitignore file
+
+$ vim .gitignore
+
+Add filename to be ignored
+
+*.xml
+*.txt
+
+Save the file
+
+Now give
+
+$ git status
+
+You will see both the files txt and xml are not being tracked by git
+However .gitignore is a file that has to be tracked
+
+So 
+$ git add .gitignore
+$ git commit -m “added .gitignore”
+
+
+==============================================================
+
+09-March-2024
+
+Agenda:
+==============================================================
+
+> git Revert 
+> git Reset command -> Extra [assignment]
+> Branching and Merging
+> Github, Remote repository
+> Push, pull, fetch
+> Cloning and forking
+> Pull request in github
+
+
+=============================================================
+
+Demo 1: Delete a file from local repo and Working directory 
+
+# sudo su -
+
+# cd myproject
+
+# git ls-files 
+
+Choose any one of the file that has to be deleted
+
+# git rm index1.html
+
+# git ls-files -> file will not be there
+
+# ls -> -> file will not be there
+
+# git status --> deletion of the fil has been staged
+
+we need to commit the deletion 
+
+# git commit -m "done deletion of file"
+
+
+Demo 2: Revert the changes that occurred in a commit to its previous state 
+
+This command always works for the commit id
+
+ #  git revert <deleted file commitid>
+
+
+As we revert in git, we are making changes again to Local repo,
+Automatically git will open a nano editor for you
+there enter some message (telling why are your reverting)
+save the file with the message. 
+Press CTL X  >>>>  press y  >>> press enter key
+
+a new commit will be generated for the revert action
+
+Execute below command to see index1.html file in WD and LR
+
+# ls
+# git ls-files
+
+=========================================
+
+RESET Command [ Assignment]
+=================================================
+
+
+RESET COMMAND 
+==================================
+
+A reset command is used to reset your commit history
+
+This command can be used to reset the HEAD of the commit history
+
+The reset command comes with 3 options:
+
+Hard :  it is a destructive operation
+# git reset --hard <commit id>
+
+-> reset the HEAD to become the above given commit id --> that becomes the latest commit id
+-> then what about the commits which are above the given commit id
+         1. The changes as part of the commit will be deleted permanently
+         2. The commits will be deleted permanently
+
+--> reset will not generate a new commit
+
+
+Soft:
+  # git reset --soft <commit id>
+
+  -> reset the HEAD to become the above given commit id --> that becomes the latest commit id
+  -> then what about the commits which are above the given commit id
+           1. The changes as part of the commit will move back to staging area
+           2. The commits will be deleted
+
+  --> reset will not generate a new commit
+
+Mixed:
+
+# git reset --mixed <commit id>
+
+-> reset the HEAD to become the above given commit id --> that becomes the latest commit id
+-> then what about the commits which are above the given commit id
+         1. The changes as part of the commit will move back to the working directory
+         2. The commits will be deleted
+
+--> reset will not generate a new commit
+
+=================================================================
+
+Branching & Merging
+==========================
+
+Command to see how many branches do we have in out local repo:
+
+$ git branch
+
+
+$ git status ⇒ working tree should be clean
+
+
+Command to create a branch with name as feature1
+
+$ git branch feature1
+
+Command to switch to branch with name feature1
+
+$ git checkout feature1
+
+Switched to branch feature1
+
+Create a new file on the branch feature1
+
+$ touch login
+
+$ git status
+
+Untracked file
+
+$ git add login
+$ git commit -m “done on branch”
+
+$ git log --oneline
+
+Merging the feature1 branch to master branch
+========================
+
+By merging we mean 
+
+The source branch → login has commits that will be merged to destination branch master
+
+Always Switch to the destination branch where we have to merge
+
+$ git checkout master
+
+$ git merge feature1 master
+
+$ git log --oneline
+
+All commits of login are present in master also, login file is also there on master branch
+
+=====================================
+
+Delete a Branch : 
+
+# git branch -d feature1
+
+
+=====================================
+Rename a branch:
+
+# git branch -m oldbranhcname newbranchname
+
+# git branch -m feature1 login
+
+===========================================
+
+Extra Scenario: 
+===========================================
+1. Squash commit ids 
+
+Create multiple small changes on the branch and commit them separately.
+We want a list of new commits on our branch 
+
+Now choose a set of commits and squash the changes of them in to a single commit that is above it
+
+For this we use 
+
+# git rebase -i <commitid>
+
+2. Squash using the merge command
+========================================
+We want to squash the changes not on the current branch
+
+We want to squash on master branch
+
+git merge --squash feature1 master
+
+============================================
+
+GITHUB:
+===========================================
+
+Create personal Access Token on github
+***************
+
+This is needed for authentication while pushing files from local repo to remote repo
+
+Go to your UserDetails - right side  top corner 
+Click on Settings —>After this → Scroll down, Left side you will select Developer settings option
+On the left side click on Personal Access tokens (classic)
+Click on generate new token button
+[sometimes you may be prompted to enter github password , pls enter that]
+
+Provide Following details :
+ A token name under Note -> token1
+Expiration : give anything
+Select Scope: Click on checkbox for Repo
+Click on Generate token  and copy the token and save it in a notepad. We will use it latter
+
+
+Create a Remote repository
+==========================
+
+
+Click on + sign on right side and select New repository
+
+OR
+
+Click on new button (green color) on left side 
+
+New repository page will open
+
+Give a unique repository name like DemoProject18Nov
+
+It should be a Public repo
+
+Click on Create repository button
+
+Remote repository is now created. 
+
+Copy the https URL of the repository
+
+Now let's connect Local repo to remote repo so as to share the local files
+============================================
+$ git checkout master
+
+$ git status
+
+Working tree to be clean
+
+Check you are on master branch
+
+$ git remote add origin [remote repo URL]
+
+Check if remote details on local
+
+$ git remote -v
+
+Push files from local repo to remote repo
+===================================
+
+Command to push files from local to remote:
+
+$ git push origin master
+
+Username : you github username
+Password : right click and paste the Personal access token created earlier
+
+You will not be able to see the text of the personal access token in the password field. Just press enter, push will be successful.
+
+
+Files will be pushed to remote repo, go to remote repo and check.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
