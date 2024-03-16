@@ -1,0 +1,4 @@
+sudo vim /etc/default/jenkins
+JENKINS_ARGS="--httpPort=-1 --httpsPort=8083 --httpsCertificate=/etc/ssl/jenkins/jenkins.crt --httpsPrivateKey=/etc/ssl/jenkins/jenkins.key --httpsKeyStore=/etc/ssl/jenkins/jenkins-bundle.crt"
+
+restart jenkins
